@@ -4,7 +4,7 @@ import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mindorks.snaphelperexample.utils.DialogUtils;
 
