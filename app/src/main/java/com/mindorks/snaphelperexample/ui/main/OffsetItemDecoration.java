@@ -26,7 +26,11 @@ public class OffsetItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+    public void getItemOffsets(
+            @NonNull Rect outRect,
+            @NonNull View view,
+            @NonNull RecyclerView parent,
+            @NonNull RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
 
         int e = 20;
@@ -36,16 +40,15 @@ public class OffsetItemDecoration extends RecyclerView.ItemDecoration {
 
         int childAdapterPosition = parent.getChildAdapterPosition(view);
 
-//        if (childAdapterPosition == 0){
-//            outRect.left = spacing -  itemSpacing;
-//        }
-//
-//        if (childAdapterPosition == state.getItemCount() - 1){
-//            outRect.right = spacing;
-//        }else {
-//            outRect.right = itemSpacing;
-//        }
-//        outRect.right = itemSpacing;
+        if (childAdapterPosition == 0){
+            outRect.left = spacing -  itemSpacing;
+        }
+
+        if (childAdapterPosition == state.getItemCount() - 1){
+            outRect.right = spacing;
+        }else {
+            outRect.right = itemSpacing;
+        }
     }
 
     private int getScreenWidth(Context context) {

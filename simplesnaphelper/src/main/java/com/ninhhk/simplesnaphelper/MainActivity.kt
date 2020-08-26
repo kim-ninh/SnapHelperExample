@@ -25,12 +25,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val itemSpacing = resources.getDimensionPixelSize(R.dimen.item_spacing)
-        val itemSize = resources.getDimensionPixelSize(R.dimen.item_size)
 
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(
                     this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            recyclerView.addItemDecoration(SimpleItemDecoration(itemSpacing, itemSize))
+            recyclerView.addItemDecoration(SimpleItemDecoration(itemSpacing))
             recyclerView.adapter = MyAdapter()
 
             recyclerView.attachSnapHelperWithListener(LinearSnapHelper(),
@@ -43,11 +42,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    class SimpleItemDecoration(
-            private val itemSpacing: Int,
-            private val itemSize: Int)
+    class SimpleItemDecoration(private val itemSpacing: Int)
         : RecyclerView.ItemDecoration() {
-        var screenWidth = 0
+        var screenWidth = -1
 
         override fun getItemOffsets(
                 outRect: Rect,
@@ -57,8 +54,7 @@ class MainActivity : AppCompatActivity() {
             super.getItemOffsets(outRect, view, parent, state)
 
             val lp = view.layoutParams as ViewGroup.MarginLayoutParams
-            val spacing = (getScreenWidth(parent.context) / 2f).toInt() -
-                    lp.width / 2
+            val spacing = (getScreenWidth(parent.context) / 2f).toInt() - lp.width / 2
             val childAdapterPosition = parent.getChildAdapterPosition(view)
 
             if (childAdapterPosition == 0) {
